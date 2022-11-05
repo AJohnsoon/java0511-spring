@@ -25,10 +25,6 @@ public class User implements Serializable{
         this.phone = phone;
     }
 
-    public static long getSerialversionuid() {
-        return serialVersionUID;
-    }
-
     public String getId() {
         return id;
     }
