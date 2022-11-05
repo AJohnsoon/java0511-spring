@@ -26,9 +26,15 @@ public class UserService {
     }
 
     public User update(String id, User user){
-        User updateEntity = findById(id);
-        updateData(updateEntity, user);
-        return userRepository.save(updateEntity);
+        try{
+            User updateEntity = findById(id);
+            updateData(updateEntity, user);
+            return userRepository.save(updateEntity);
+        }
+        catch (RuntimeException e){
+            e.printStackTrace();
+            throw new ResourceNotFoundException(e);
+        }
     }
 
     public void delete(String id){
@@ -36,7 +42,7 @@ public class UserService {
             userRepository.deleteById(id);
         }
         catch (RuntimeException e){
-            e.getStackTrace();
+            throw new ResourceNotFoundException(id);
         }
     }
 

@@ -4,6 +4,7 @@ import com.example.jvspace.entities.User;
 import com.example.jvspace.repositories.UserRepository;
 import com.example.jvspace.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -45,7 +46,12 @@ public class UserController {
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable String id){
-        userService.delete(id);
-        return ResponseEntity.ok().build();
+        if(userService.findById(id).equals(HttpStatus.NOT_FOUND)){
+            return ResponseEntity.noContent().build();
+        }
+        else{
+            userService.delete(id);
+            return ResponseEntity.ok().build();
+        }
     }
 }
