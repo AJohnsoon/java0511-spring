@@ -2,6 +2,7 @@ package com.example.jvspace.services;
 
 import com.example.jvspace.entities.User;
 import com.example.jvspace.repositories.UserRepository;
+import com.example.jvspace.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +19,7 @@ public class UserService {
 
     public User findById(String id){
         Optional<User>userObject  = userRepository.findById(id);
-        return userObject.orElseThrow(() -> new RuntimeException(id));
+        return userObject.orElseThrow(() -> new ResourceNotFoundException(id));
     }
     public User insert(User userObject){
         return userRepository.save(userObject);
@@ -28,6 +29,15 @@ public class UserService {
         User updateEntity = findById(id);
         updateData(updateEntity, user);
         return userRepository.save(updateEntity);
+    }
+
+    public void delete(String id){
+        try{
+            userRepository.deleteById(id);
+        }
+        catch (RuntimeException e){
+            e.getStackTrace();
+        }
     }
 
     private void updateData(User entity, User user) {
