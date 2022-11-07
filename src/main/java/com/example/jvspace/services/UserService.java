@@ -21,6 +21,7 @@ public class UserService {
         Optional<User>userObject  = userRepository.findById(id);
         return userObject.orElseThrow(() -> new ResourceNotFoundException(id));
     }
+
     public User insert(User userObject){
         return userRepository.save(userObject);
     }
