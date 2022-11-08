@@ -3,6 +3,7 @@ package com.example.jvspace.services;
 import com.example.jvspace.entities.User;
 import com.example.jvspace.repositories.UserRepository;
 import com.example.jvspace.services.exceptions.ResourceNotFoundException;
+import com.example.jvspace.utils.UserTools;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,9 +49,7 @@ public class UserService {
     }
 
     private void updateData(User entity, User user) {
-        entity.setName(user.getName());
-        entity.setEmail(user.getEmail());
-        entity.setPhone(user.getPhone());
+        UserTools.updateVerify(entity, user);
     }
 
 }
