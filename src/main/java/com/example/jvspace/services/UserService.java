@@ -1,5 +1,6 @@
 package com.example.jvspace.services;
 
+import com.example.jvspace.entities.Post;
 import com.example.jvspace.entities.User;
 import com.example.jvspace.repositories.UserRepository;
 import com.example.jvspace.services.exceptions.UserNotFoundException;
