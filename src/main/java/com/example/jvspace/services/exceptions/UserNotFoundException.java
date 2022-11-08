@@ -1,9 +1,9 @@
 package com.example.jvspace.services.exceptions;
 
-public class ResourceNotFoundException extends RuntimeException{
+public class UserNotFoundException extends RuntimeException{
     private static final Long seriaVersionUID = 1L;
 
-    public ResourceNotFoundException(Object id){
+    public UserNotFoundException(Object id){
         super("Resource not found. ID: " + id);
     }
 }
