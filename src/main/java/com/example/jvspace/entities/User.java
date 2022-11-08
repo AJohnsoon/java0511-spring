@@ -1,5 +1,6 @@
 package com.example.jvspace.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,6 +12,7 @@ public class User implements Serializable{
     @Serial
     private static final long serialVersionUID = 1L;
     @Id
+    @JsonIgnore
     private String id;
     private String name;
     private String email;

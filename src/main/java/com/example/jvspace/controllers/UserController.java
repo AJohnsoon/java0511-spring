@@ -1,5 +1,6 @@
 package com.example.jvspace.controllers;
 
+import com.example.jvspace.dto.UserDTO;
 import com.example.jvspace.entities.User;
 import com.example.jvspace.repositories.UserRepository;
 import com.example.jvspace.services.UserService;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/users")
@@ -20,28 +22,32 @@ public class UserController {
     private UserService userService;
 
     @GetMapping
-    public ResponseEntity<List<User>> findAll(){
+    public ResponseEntity<List<UserDTO>> findAll(){
         List<User> list = userService.findAll();
-        return ResponseEntity.ok().body(list);
+        List<UserDTO> listDTO = list.stream().map(obj -> new UserDTO(obj)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(listDTO);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<User> findById(@PathVariable String id) {
+    public ResponseEntity<UserDTO> findById(@PathVariable String id) {
         User user = userService.findById(id);
-        return ResponseEntity.ok().body(user);
+        UserDTO userDTO = new UserDTO(user);
+        return ResponseEntity.ok().body(userDTO);
     }
 
     @PostMapping
-    public ResponseEntity<User> insert(@RequestBody User userObject){
+    public ResponseEntity<UserDTO> insert(@RequestBody User userObject){
         userObject = userService.insert(userObject);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(userObject.getId()).toUri();
-        return ResponseEntity.created(uri).body(userObject);
+        UserDTO dtoObject = new UserDTO(userObject);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dtoObject.getId()).toUri();
+        return ResponseEntity.created(uri).body(dtoObject);
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<User> update(@PathVariable String id ,@RequestBody User userObject){
+    public ResponseEntity<UserDTO> update(@PathVariable String id ,@RequestBody User userObject){
         userObject = userService.update(id, userObject);
-        return ResponseEntity.ok().body(userObject);
+        UserDTO dtoObject = new UserDTO(userObject);
+        return ResponseEntity.ok().body(dtoObject);
     }
 
     @DeleteMapping(value = "/{id}")
