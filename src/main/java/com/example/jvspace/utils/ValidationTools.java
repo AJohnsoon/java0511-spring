@@ -1,9 +1,10 @@
 package com.example.jvspace.utils;
 
+import com.example.jvspace.entities.Post;
 import com.example.jvspace.entities.User;
 
-public class UserTools {
-    public static void updateVerify(User entity , User user) {
+public class ValidationTools {
+    public static void updateUserVerify(User entity , User user) {
         if(user.getName() != null && user.getEmail() != null && user.getPhone() != null){
             entity.setName(user.getName());
             entity.setEmail(user.getEmail());
@@ -40,6 +41,23 @@ public class UserTools {
                 user.getPhone();
                 entity.setName(user.getName());
                 entity.setEmail(user.getEmail());
+            }
+        }
+    }
+
+    public static void updatePostVerify(Post entity, Post post){
+        if(post.getTitle() != null && post.getBody() != null){
+            entity.setTitle(post.getTitle());
+            entity.setBody(post.getBody());
+        }
+        else{
+            if(post.getTitle() == null){
+                post.getTitle();
+                entity.setBody(post.getBody());
+            }
+            else if(post.getBody() == null){
+                post.getBody();
+                entity.setTitle(post.getTitle());
             }
         }
     }

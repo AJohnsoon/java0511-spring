@@ -1,4 +1,4 @@
-package com.example.jvspace.dto;
+package com.example.jvspace.entities.dto;
 
 import com.example.jvspace.entities.User;
 

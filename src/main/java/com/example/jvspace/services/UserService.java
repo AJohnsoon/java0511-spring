@@ -1,10 +1,9 @@
 package com.example.jvspace.services;
 
-import com.example.jvspace.entities.Post;
 import com.example.jvspace.entities.User;
 import com.example.jvspace.repositories.UserRepository;
-import com.example.jvspace.services.exceptions.UserNotFoundException;
-import com.example.jvspace.utils.UserTools;
+import com.example.jvspace.services.exceptions.ResourceNotFoundException;
+import com.example.jvspace.utils.ValidationTools;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,13 +14,15 @@ import java.util.Optional;
 public class UserService {
     @Autowired
     private UserRepository userRepository;
+
+
     public List<User> findAll(){
         return userRepository.findAll();
     }
 
     public User findById(String id){
         Optional<User>userObject  = userRepository.findById(id);
-        return userObject.orElseThrow(() -> new UserNotFoundException(id));
+        return userObject.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public User insert(User userObject){
@@ -31,12 +32,12 @@ public class UserService {
     public User update(String id, User user){
         try{
             User updateEntity = findById(id);
-            updateData(updateEntity, user);
+            ValidationTools.updateUserVerify(updateEntity, user);
             return userRepository.save(updateEntity);
         }
         catch (RuntimeException e){
             e.printStackTrace();
-            throw new UserNotFoundException(e);
+            throw new ResourceNotFoundException(e.getMessage());
         }
     }
 
@@ -45,12 +46,8 @@ public class UserService {
             userRepository.deleteById(id);
         }
         catch (RuntimeException e){
-            throw new UserNotFoundException(id);
+            throw new ResourceNotFoundException(id);
         }
-    }
-
-    private void updateData(User entity, User user) {
-        UserTools.updateVerify(entity, user);
     }
 
 }

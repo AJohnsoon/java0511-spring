@@ -1,6 +1,6 @@
 package com.example.jvspace.controllers;
 
-import com.example.jvspace.dto.PostDTO;
+import com.example.jvspace.entities.dto.PostDTO;
 import com.example.jvspace.entities.Post;
 import com.example.jvspace.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,8 +1,7 @@
 package com.example.jvspace.controllers;
 
-import com.example.jvspace.dto.UserDTO;
+import com.example.jvspace.entities.dto.UserDTO;
 import com.example.jvspace.entities.User;
-import com.example.jvspace.repositories.UserRepository;
 import com.example.jvspace.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,7 +11,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
