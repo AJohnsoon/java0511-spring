@@ -1,6 +1,7 @@
 package com.example.jvspace.entities.dto;
 
 import com.example.jvspace.entities.Post;
+import com.example.jvspace.entities.User;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.io.Serial;
@@ -15,6 +16,8 @@ public class PostDTO implements Serializable {
     private Date date;
     private String title;
     private String body;
+    private User user;
+
 
     public PostDTO(){}
 
@@ -23,6 +26,7 @@ public class PostDTO implements Serializable {
         date = postEntity.getDate();
         title = postEntity.getTitle();
         body = postEntity.getBody();
+        user = postEntity.getUser();
     }
 
     public String getId() {
@@ -55,5 +59,13 @@ public class PostDTO implements Serializable {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

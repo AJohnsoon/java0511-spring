@@ -15,11 +15,13 @@ public class ValidationTools {
                 user.getName();
                 user.getEmail();
                 entity.setPhone(user.getPhone());
+
             }
             else if(user.getEmail() == null && user.getPhone() == null){
                 user.getEmail();
                 user.getPhone();
                 entity.setName(user.getName());
+
             }
             else if(user.getName() == null && user.getPhone() == null){
                 user.getName();

@@ -1,9 +1,10 @@
 package com.example.jvspace.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -23,14 +24,17 @@ public class Post implements Serializable {
     private String title;
     private String body;
 
+    @DocumentReference(collection = "tb_user")
+    private User user;
     public Post() {
     }
 
-    public Post(String id, Date date, String title, String body) {
+    public Post(String id, Date date, String title, String body, User user) {
         this.id = id;
         this.date = date;
         this.title = title;
         this.body = body;
+        this.user = user;
     }
 
     public String getId() {
@@ -63,6 +67,13 @@ public class Post implements Serializable {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public User getUser() {
+        return user;
+    }
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

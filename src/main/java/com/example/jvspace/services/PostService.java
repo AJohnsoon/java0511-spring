@@ -1,7 +1,9 @@
 package com.example.jvspace.services;
 
 import com.example.jvspace.entities.Post;
+import com.example.jvspace.impl.PostageUserImpl;
 import com.example.jvspace.repositories.PostRepository;
+import com.example.jvspace.services.exceptions.ResourceNotAcceptableException;
 import com.example.jvspace.services.exceptions.ResourceNotFoundException;
 import com.example.jvspace.utils.ValidationTools;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,9 @@ public class PostService {
     @Autowired
     private PostRepository postRepository;
 
+    @Autowired
+    private PostageUserImpl postageUserImplementation;
+
 
     public List<Post> findAll(){
         return postRepository.findAll();
@@ -26,6 +31,10 @@ public class PostService {
     }
 
     public Post insert(Post postObject){
+        if(postObject.getUser() == null){
+            throw new ResourceNotAcceptableException(postObject.getId());
+        }
+        postageUserImplementation.insert(postObject.getUser());
         return postRepository.insert(postObject);
     }
 
