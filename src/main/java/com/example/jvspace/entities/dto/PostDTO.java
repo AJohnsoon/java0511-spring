@@ -2,7 +2,6 @@ package com.example.jvspace.entities.dto;
 
 import com.example.jvspace.entities.Post;
 import com.example.jvspace.entities.User;
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.io.Serial;
 import java.io.Serializable;
