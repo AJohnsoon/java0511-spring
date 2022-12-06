@@ -34,8 +34,8 @@ public class PostService {
         if(postObject.getUser() == null){
             throw new ResourceNotAcceptableException(postObject.getId());
         }
-        postageUserImplementation.insert(postObject.getUser());
-        return postRepository.insert(postObject);
+        postageUserImplementation.save(postObject.getUser());
+        return postRepository.save(postObject);
     }
 
     public Post update(String id, Post post){
