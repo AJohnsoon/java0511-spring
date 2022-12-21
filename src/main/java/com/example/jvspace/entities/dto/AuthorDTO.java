@@ -9,15 +9,16 @@ public class AuthorDTO implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
-
     private String id;
     private String name;
 
     public AuthorDTO(){}
 
     public AuthorDTO(User user){
-        this.id = user.getId();
-        this.name = user.getName();
+        if(user != null){
+            this.id = user.getId();
+            this.name = user.getName();
+        }
     }
 
     public String getId() {

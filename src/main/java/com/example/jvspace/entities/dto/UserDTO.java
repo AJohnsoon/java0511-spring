@@ -4,16 +4,18 @@ import com.example.jvspace.entities.User;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDTO implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
-
     private String id;
     private String name;
     private String email;
     private String phone;
+    private List<String> postIds = new ArrayList<>();
 
     public UserDTO() {}
 
@@ -22,6 +24,7 @@ public class UserDTO implements Serializable {
         name = obj.getName();
         email = obj.getEmail();
         phone = obj.getPhone();
+        postIds = obj.getPostIds();
     }
 
     public String getId() {
@@ -54,5 +57,13 @@ public class UserDTO implements Serializable {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public List<String> getPostIds() {
+        return postIds;
+    }
+
+    public void setPostIds(List<String> postIds) {
+        this.postIds = postIds;
     }
 }

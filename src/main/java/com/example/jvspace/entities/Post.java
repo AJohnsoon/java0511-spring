@@ -1,6 +1,7 @@
 package com.example.jvspace.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
@@ -25,6 +26,7 @@ public class Post implements Serializable {
 
     @DocumentReference(collection = "tb_user")
     private User user;
+
     public Post() {
     }
 

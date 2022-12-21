@@ -5,6 +5,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Document(collection = "tb_user")
 public class User implements Serializable{
@@ -15,6 +17,8 @@ public class User implements Serializable{
     private String name;
     private String email;
     private String phone;
+
+    private List<String> postIds = new ArrayList<>();
 
     public User(){}
 
@@ -55,6 +59,14 @@ public class User implements Serializable{
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public List<String> getPostIds() {
+        return postIds;
+    }
+
+    public void setPostIds(List<String> postIds) {
+        this.postIds = postIds;
     }
 
     @Override
