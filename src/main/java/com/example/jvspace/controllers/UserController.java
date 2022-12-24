@@ -1,10 +1,13 @@
 package com.example.jvspace.controllers;
 
+import com.example.jvspace.entities.Comment;
 import com.example.jvspace.entities.Post;
 import com.example.jvspace.entities.dto.UserDTO;
 import com.example.jvspace.entities.User;
+import com.example.jvspace.services.CommentService;
 import com.example.jvspace.services.PostService;
 import com.example.jvspace.services.UserService;
+import com.example.jvspace.utils.FindUserComments;
 import com.example.jvspace.utils.FindUserPostage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,11 +27,16 @@ public class UserController {
     @Autowired
     private PostService postService;
 
+    @Autowired
+    private CommentService commentService;
+
     @GetMapping
     public ResponseEntity<List<UserDTO>> findAll(){
         List<User> list = userService.findAll();
         List<Post> postList = postService.findAll();
+        List<Comment> commentList = commentService.findAll();
         FindUserPostage.findAllUserPostage(list, postList);
+        FindUserComments.findAllUserComments(list, commentList);
         List<UserDTO> listDTO = list.stream().map(obj -> new UserDTO(obj)).collect(Collectors.toList());
         return ResponseEntity.ok().body(listDTO);
     }
@@ -37,7 +45,9 @@ public class UserController {
     public ResponseEntity<UserDTO> findById(@PathVariable String id) {
         User user = userService.findById(id);
         List<Post> postList = postService.findAll();
+        List<Comment> commentList = commentService.findAll();
         FindUserPostage.findUserPostage(user, postList);
+        FindUserComments.findUserComment(user, commentList);
         UserDTO userDTO = new UserDTO(user);
         return ResponseEntity.ok().body(userDTO);
     }

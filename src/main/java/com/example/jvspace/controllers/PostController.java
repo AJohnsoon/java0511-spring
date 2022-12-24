@@ -1,8 +1,11 @@
 package com.example.jvspace.controllers;
 
+import com.example.jvspace.entities.Comment;
 import com.example.jvspace.entities.dto.PostDTO;
 import com.example.jvspace.entities.Post;
+import com.example.jvspace.services.CommentService;
 import com.example.jvspace.services.PostService;
+import com.example.jvspace.utils.FindPostComments;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,9 +23,14 @@ public class PostController {
     @Autowired
     private PostService postService;
 
+    @Autowired
+    private CommentService commentService;
+
     @GetMapping
     public ResponseEntity<List<PostDTO>> findAll(){
         List<Post> list = postService.findAll();
+        List<Comment> commentList = commentService.findAll();
+        FindPostComments.findAllPostComments(list, commentList);
         List<PostDTO> listDTO = list.stream().map(PostDTO::new).collect(Collectors.toList());
         return ResponseEntity.ok().body(listDTO);
     }
@@ -30,6 +38,8 @@ public class PostController {
     @GetMapping(value = "/{id}")
     public ResponseEntity<PostDTO> findById(@PathVariable String id){
         Post post = postService.findById(id);
+        List<Comment> commentList = commentService.findAll();
+        FindPostComments.findPostComments(post, commentList);
         PostDTO postDTO = new PostDTO(post);
         return ResponseEntity.ok().body(postDTO);
     }
