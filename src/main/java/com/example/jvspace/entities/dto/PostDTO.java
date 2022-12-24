@@ -1,10 +1,14 @@
 package com.example.jvspace.entities.dto;
 
+import com.example.jvspace.entities.Comment;
 import com.example.jvspace.entities.Post;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class PostDTO implements Serializable {
 
@@ -15,7 +19,7 @@ public class PostDTO implements Serializable {
     private String title;
     private String body;
     private AuthorDTO author;
-
+    private List<String> comments = new ArrayList<>();
 
     public PostDTO(){}
 
@@ -25,6 +29,7 @@ public class PostDTO implements Serializable {
         title = postEntity.getTitle();
         body = postEntity.getBody();
         author = new AuthorDTO(postEntity.getUser());
+        comments = postEntity.getComments().stream().map( Comment::getId ).collect( Collectors.toList());
     }
 
     public String getId() {
@@ -65,5 +70,11 @@ public class PostDTO implements Serializable {
 
     public void setAuthor(AuthorDTO author) {
         this.author = author;
+    }
+    public List<String> getComments() {
+        return comments;
+    }
+    public void setComments(List<String> comments) {
+        this.comments = comments;
     }
 }

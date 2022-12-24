@@ -20,6 +20,8 @@ public class User implements Serializable{
 
     private List<String> postIds = new ArrayList<>();
 
+    private List<String> commentsIds = new ArrayList<>();
+
     public User(){}
 
     public User(String id, String name, String email, String phone) {
@@ -63,6 +65,15 @@ public class User implements Serializable{
 
     public List<String> getPostIds() {
         return postIds;
+    }
+
+
+    public List<String> getCommentsIds() {
+        return commentsIds;
+    }
+
+    public void setCommentsIds(List<String> commentsIds) {
+        this.commentsIds = commentsIds;
     }
 
     public void setPostIds(List<String> postIds) {

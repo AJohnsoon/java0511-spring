@@ -17,6 +17,7 @@ public class UserDTO implements Serializable {
     private String phone;
     private List<String> postIds = new ArrayList<>();
 
+    private List<String> commentsIds = new ArrayList<>();
     public UserDTO() {}
 
     public UserDTO(User obj) {
@@ -25,6 +26,7 @@ public class UserDTO implements Serializable {
         email = obj.getEmail();
         phone = obj.getPhone();
         postIds = obj.getPostIds();
+        commentsIds = obj.getCommentsIds();
     }
 
     public String getId() {
@@ -65,5 +67,13 @@ public class UserDTO implements Serializable {
 
     public void setPostIds(List<String> postIds) {
         this.postIds = postIds;
+    }
+
+    public List<String> getCommentsIds() {
+        return commentsIds;
+    }
+
+    public void setCommentsIds(List<String> commentsIds) {
+        this.commentsIds = commentsIds;
     }
 }

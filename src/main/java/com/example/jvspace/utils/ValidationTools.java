@@ -1,5 +1,6 @@
 package com.example.jvspace.utils;
 
+import com.example.jvspace.entities.Comment;
 import com.example.jvspace.entities.Post;
 import com.example.jvspace.entities.User;
 
@@ -61,6 +62,12 @@ public class ValidationTools {
                 post.getBody();
                 entity.setTitle(post.getTitle());
             }
+        }
+    }
+
+    public static void updateCommentVerify(Comment entity, Comment comment){
+        if(comment.getComment() != null){
+            entity.setComment( comment.getComment());
         }
     }
 }
