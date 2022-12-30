@@ -22,8 +22,10 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/users")
 public class UserController {
+
     @Autowired
     private UserService userService;
+
     @Autowired
     private PostService postService;
 
@@ -77,4 +79,5 @@ public class UserController {
             return ResponseEntity.ok().build();
         }
     }
+
 }

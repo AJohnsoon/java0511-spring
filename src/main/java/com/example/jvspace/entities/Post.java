@@ -1,6 +1,7 @@
 package com.example.jvspace.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
@@ -10,94 +11,42 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 @Document(collection = "tb_post")
+@NoArgsConstructor
+@EqualsAndHashCode
+@AllArgsConstructor
 public class Post implements Serializable {
+
     @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
+    @Getter
+    @Setter
     private String id;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
+    @Getter
+    @Setter
     private Date date;
+
+    @Getter
+    @Setter
     private String title;
+
+    @Getter
+    @Setter
     private String body;
+
     @DocumentReference(collection = "tb_user")
+    @Getter
+    @Setter
     private User user;
 
     @DocumentReference(collection = "tb_comments")
+    @Getter
+    @Setter
     private List<Comment> comments = new ArrayList<>();
 
-    public Post() {
-    }
-
-    public Post(String id, Date date, String title, String body, User user) {
-        this.id = id;
-        this.date = date;
-        this.title = title;
-        this.body = body;
-        this.user = user;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getBody() {
-        return body;
-    }
-
-    public void setBody(String body) {
-        this.body = body;
-    }
-
-    public User getUser() {
-        return user;
-    }
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Post post = (Post) o;
-        return id.equals( post.id );
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash( id );
-    }
 }

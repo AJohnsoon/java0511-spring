@@ -1,7 +1,6 @@
 package com.example.jvspace.entities.dto;
 
 import com.example.jvspace.entities.Comment;
-import com.example.jvspace.entities.Post;
 
 import java.io.Serial;
 import java.io.Serializable;

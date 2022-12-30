@@ -2,6 +2,9 @@ package com.example.jvspace.entities.dto;
 
 import com.example.jvspace.entities.Comment;
 import com.example.jvspace.entities.Post;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -10,18 +13,29 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@NoArgsConstructor
 public class PostDTO implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
+    @Getter
+    @Setter
     private String id;
+    @Getter
+    @Setter
     private Date date;
+    @Getter
+    @Setter
     private String title;
+    @Getter
+    @Setter
     private String body;
+    @Getter
+    @Setter
     private AuthorDTO author;
+    @Getter
+    @Setter
     private List<String> comments = new ArrayList<>();
-
-    public PostDTO(){}
 
     public PostDTO(Post postEntity){
         id = postEntity.getId();
@@ -32,49 +46,4 @@ public class PostDTO implements Serializable {
         comments = postEntity.getComments().stream().map( Comment::getId ).collect( Collectors.toList());
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getBody() {
-        return body;
-    }
-
-    public void setBody(String body) {
-        this.body = body;
-    }
-
-    public AuthorDTO getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(AuthorDTO author) {
-        this.author = author;
-    }
-    public List<String> getComments() {
-        return comments;
-    }
-    public void setComments(List<String> comments) {
-        this.comments = comments;
-    }
 }

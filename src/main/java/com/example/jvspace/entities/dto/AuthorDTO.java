@@ -1,18 +1,26 @@
 package com.example.jvspace.entities.dto;
 
 import com.example.jvspace.entities.User;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
 
+@NoArgsConstructor
 public class AuthorDTO implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
-    private String id;
-    private String name;
 
-    public AuthorDTO(){}
+    @Getter
+    @Setter
+    private String id;
+
+    @Getter
+    @Setter
+    private String name;
 
     public AuthorDTO(User user){
         if(user != null){
@@ -21,19 +29,4 @@ public class AuthorDTO implements Serializable {
         }
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }
