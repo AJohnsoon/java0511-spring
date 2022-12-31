@@ -1,16 +1,13 @@
 package com.example.jvspace.entities.dto;
 
 import com.example.jvspace.entities.Comment;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.Date;
 
-@AllArgsConstructor
 @Getter
 @Setter
 public class CommentDTO implements Serializable {
