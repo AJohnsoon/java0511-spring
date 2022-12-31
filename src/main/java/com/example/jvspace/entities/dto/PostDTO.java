@@ -8,8 +8,8 @@ import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,7 +22,7 @@ public class PostDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String id;
-    private Date date;
+    private Instant date;
     private String title;
     private String body;
     private AuthorDTO author;

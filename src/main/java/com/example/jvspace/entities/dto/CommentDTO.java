@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.Date;
 
 @AllArgsConstructor
@@ -18,7 +19,7 @@ public class CommentDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String id;
-    private Date moment;
+    private Instant moment;
     private String comment;
     private String author;
     private String postage;
