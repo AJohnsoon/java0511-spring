@@ -24,6 +24,7 @@ public class UserDTO implements Serializable {
     private String phone;
     private List<String> postIds = new ArrayList<>();
     private List<String> commentsIds = new ArrayList<>();
+
     public UserDTO(User obj) {
         id = obj.getId();
         name = obj.getName();

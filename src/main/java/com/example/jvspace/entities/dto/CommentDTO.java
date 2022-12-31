@@ -23,6 +23,7 @@ public class CommentDTO implements Serializable {
     private String comment;
     private String author;
     private String postage;
+
     public CommentDTO(Comment commentEntity){
         id = commentEntity.getId();
         moment = commentEntity.getMoment();

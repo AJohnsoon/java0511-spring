@@ -27,6 +27,7 @@ public class PostDTO implements Serializable {
     private String body;
     private AuthorDTO author;
     private List<String> comments = new ArrayList<>();
+
     public PostDTO(Post postEntity){
         id = postEntity.getId();
         date = postEntity.getDate();
