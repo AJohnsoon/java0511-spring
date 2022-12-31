@@ -16,37 +16,22 @@ import java.util.List;
 @NoArgsConstructor
 @EqualsAndHashCode
 @AllArgsConstructor
+@Getter
+@Setter
 public class Post implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Getter
-    @Setter
     private String id;
-
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
-    @Getter
-    @Setter
     private Date date;
-
-    @Getter
-    @Setter
     private String title;
-
-    @Getter
-    @Setter
     private String body;
-
     @DocumentReference(collection = "tb_user")
-    @Getter
-    @Setter
     private User user;
-
     @DocumentReference(collection = "tb_comments")
-    @Getter
-    @Setter
     private List<Comment> comments = new ArrayList<>();
 
 }

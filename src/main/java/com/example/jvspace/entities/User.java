@@ -13,34 +13,19 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
+@Getter
+@Setter
 public class User implements Serializable{
 
     @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Getter
-    @Setter
     private String id;
-
-    @Getter
-    @Setter
     private String name;
-
-    @Getter
-    @Setter
     private String email;
-
-    @Getter
-    @Setter
     private String phone;
-
-    @Getter
-    @Setter
     private List<String> postIds = new ArrayList<>();
-
-    @Getter
-    @Setter
     private List<String> commentsIds = new ArrayList<>();
 
 }

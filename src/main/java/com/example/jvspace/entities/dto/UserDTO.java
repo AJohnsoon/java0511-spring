@@ -11,30 +11,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
+@Getter
+@Setter
 public class UserDTO implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
-    @Getter
-    @Setter
+
     private String id;
-    @Getter
-    @Setter
     private String name;
-    @Getter
-    @Setter
     private String email;
-    @Getter
-    @Setter
     private String phone;
-    @Getter
-    @Setter
     private List<String> postIds = new ArrayList<>();
-    @Getter
-    @Setter
-
     private List<String> commentsIds = new ArrayList<>();
-
     public UserDTO(User obj) {
         id = obj.getId();
         name = obj.getName();

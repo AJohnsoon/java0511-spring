@@ -14,29 +14,19 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @NoArgsConstructor
+@Getter
+@Setter
 public class PostDTO implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
-    @Getter
-    @Setter
-    private String id;
-    @Getter
-    @Setter
-    private Date date;
-    @Getter
-    @Setter
-    private String title;
-    @Getter
-    @Setter
-    private String body;
-    @Getter
-    @Setter
-    private AuthorDTO author;
-    @Getter
-    @Setter
-    private List<String> comments = new ArrayList<>();
 
+    private String id;
+    private Date date;
+    private String title;
+    private String body;
+    private AuthorDTO author;
+    private List<String> comments = new ArrayList<>();
     public PostDTO(Post postEntity){
         id = postEntity.getId();
         date = postEntity.getDate();
