@@ -15,7 +15,7 @@ import java.util.List;
 @EqualsAndHashCode
 @Getter
 @Setter
-public class User implements Serializable{
+public class User implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
